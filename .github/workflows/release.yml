@@ -1,0 +1,14 @@
+name: release
+on:
+  repository_dispatch:
+    types: [new-release]
+
+jobs:
+  release:
+    runs-on: macos-10.15
+    steps:
+      - uses: actions/checkout@v2
+      - name: update formula
+        run: |
+          sh Formula/write_formula.sh "${{ github.event.client_payload.tag }}" "${{ github.event.client_payload.sha }}" > Formula/fhttp.rb
+          cat Formula/fhttp.rb
