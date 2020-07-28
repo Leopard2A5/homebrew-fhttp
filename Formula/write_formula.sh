@@ -1,6 +1,7 @@
 #!/bin/sh
 
 VERSION=${1:?version must be given}
+VERSION=${VERSION#"/refs/tags/"}
 SHA=${2:?sha must be given}
 
 echo "class Fhttp < Formula
