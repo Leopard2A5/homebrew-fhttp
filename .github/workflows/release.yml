@@ -11,4 +11,10 @@ jobs:
       - name: update formula
         run: |
           sh Formula/write_formula.sh "${{ github.event.client_payload.tag }}" "${{ github.event.client_payload.sha }}" > Formula/fhttp.rb
-          cat Formula/fhttp.rb
+      - name: commit
+        uses: EndBug/add-and-commit@v4
+        with:
+          message: "release ${{ github.event.client_payload.tag }}"
+          add: Formula/fhttp.rb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
