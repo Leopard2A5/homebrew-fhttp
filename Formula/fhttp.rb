@@ -3,7 +3,7 @@ class Fhttp < Formula
   homepage 'https://github.com/Leopard2A5/fhttp'
   license 'MIT'
   url 'https://github.com/Leopard2A5/fhttp/releases/download/1.3.1/fhttp.macosx.tar.gz'
-  sha256 '70c4740d7db6aac7d23c32823a642ab5b511df9787b615e12dcabef215aa751f'
+  sha256 'f5c628db8584c1a3e18a09fcf3eba061fe815a46873acb6313a21c7cf8142f24'
 
   def install
     bin.install 'fhttp'
