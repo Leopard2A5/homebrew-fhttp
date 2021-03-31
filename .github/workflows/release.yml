@@ -18,3 +18,22 @@ jobs:
           add: Formula/fhttp.rb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  test-installation:
+    name: test homebrew install macosx
+      needs: release
+      runs-on: macos-10.15
+      steps:
+        - name: install
+          run: |
+            brew tap Leopard2A5/fhttp &&
+            brew install fhttp &&
+            fhttp --version > version.txt
+        - name: test
+          run: |
+            if [ "$(cat version.txt)" == "fhttp ${{ github.event.client_payload.tag }}" ]; then
+              echo "success!"
+            else
+              echo "installed version is not the expected one!"
+              false
+            fi
